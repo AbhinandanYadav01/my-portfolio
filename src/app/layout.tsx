@@ -1,14 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/layout/CustomCursor";
 import Background from "@/components/layout/Background";
 import ScrollProgress from "@/components/layout/ScrollProgress";
 import BackToTop from "@/components/layout/BackToTop";
 
-const inter = Inter({
+const bodyFont = Manrope({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-body",
+});
+
+const displayFont = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const viewport: Viewport = {
@@ -16,15 +22,17 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: "#020617",
+  themeColor: "#111111",
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://abhinandan.dev"),
   title: {
     default: "Abhinandan | MERN Stack Developer",
-    template: "%s | Abhinandan"
+    template: "%s | Abhinandan",
   },
-  description: "Senior MERN Stack Developer specializing in building high-performance, scalable full-stack applications with MongoDB, Express, React, and Node.js.",
+  description:
+    "Senior MERN Stack Developer specializing in building high-performance, scalable full-stack applications with MongoDB, Express, React, and Node.js.",
   keywords: [
     "Abhinandan",
     "MERN Stack Developer",
@@ -32,7 +40,7 @@ export const metadata: Metadata = {
     "React Specialist",
     "Node.js Expert",
     "Scalable Web Apps",
-    "Portfolio"
+    "Portfolio",
   ],
   authors: [{ name: "Abhinandan" }],
   creator: "Abhinandan",
@@ -64,7 +72,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   verification: {
-    google: "YOUR_GOOGLE_VERIFICATION_CODE", // Add your Google Search Console verification code here
+    google: "YOUR_GOOGLE_VERIFICATION_CODE",
   },
   appleWebApp: {
     capable: true,
@@ -92,19 +100,22 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Person",
-              "name": "Abhinandan",
-              "url": "https://abhinandan.dev",
-              "jobTitle": "MERN Stack Developer",
-              "description": "Senior MERN Stack Developer specializing in building high-performance, scalable full-stack applications.",
-              "sameAs": [
-                "https://github.com/your-username", // Update with your links
-                "https://linkedin.com/in/your-username"
-              ]
+              name: "Abhinandan",
+              url: "https://abhinandan.dev",
+              jobTitle: "MERN Stack Developer",
+              description:
+                "Senior MERN Stack Developer specializing in building high-performance, scalable full-stack applications.",
+              sameAs: [
+                "https://github.com/your-username",
+                "https://linkedin.com/in/your-username",
+              ],
             }),
           }}
         />
       </head>
-      <body className={`${inter.variable} font-sans antialiased bg-[#020617] text-white selection:bg-blue-500/30 selection:text-white`}>
+      <body
+        className={`${bodyFont.variable} ${displayFont.variable} font-sans antialiased bg-[#111111] text-white selection:bg-white/20 selection:text-white`}
+      >
         <CustomCursor />
         <Background />
         <ScrollProgress />

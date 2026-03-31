@@ -1,7 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
-import Experience from "@/components/sections/Experience";
 import Services from "@/components/sections/Services";
 import TechStack from "@/components/sections/TechStack";
 import Projects from "@/components/sections/Projects";
@@ -9,37 +8,46 @@ import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background text-foreground selection:bg-blue-500/30">
+    <main className="min-h-screen bg-background text-foreground">
       <Navbar />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Hero />
         <About />
-        <Experience />
-        <Services />
         <TechStack />
         <Projects />
+        <Services />
         <Contact />
-        
-        {/* Footer */}
-        <footer className="py-12 border-t border-zinc-900/50 flex flex-col items-center justify-center gap-6 bg-[#020617]/95">
-          <div className="flex gap-8">
-            <a href="https://github.com/abhishekyadav-96" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-blue-400 transition-colors text-sm font-medium">
-              GitHub
-            </a>
-            <a href="https://www.linkedin.com/in/abhinandan-yadav-644006378/" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-blue-400 transition-colors text-sm font-medium">
-              LinkedIn
-            </a>
-            <a href="https://www.instagram.com/abhishekyadav___018/" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-blue-400 transition-colors text-sm font-medium">
-              Instagram
-            </a>
-          </div>
-          <hr className="w-full border-zinc-800" />
-          <div className="flex items-center gap-4">
-            <div className="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center">
-              <span className="text-xs font-bold accent-gradient">AY</span>
+
+        <footer className="mt-20 border-t border-black/20 py-8 text-zinc-800">
+          <div className="flex flex-col items-center justify-between gap-4 text-sm md:flex-row">
+            <p>© 2026 Abhinandan.</p>
+            <div className="flex gap-6">
+              <a
+                href="https://github.com/abhishekyadav-96"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-black"
+              >
+                GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/abhinandan-yadav-644006378/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-black"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://www.instagram.com/abhishekyadav___018/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors hover:text-black"
+              >
+                Instagram
+              </a>
             </div>
-            <p className="text-zinc-500 text-sm">© 2026 Abhinandan. Built with precision.</p>
           </div>
         </footer>
       </div>

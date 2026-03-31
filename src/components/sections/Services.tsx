@@ -11,8 +11,29 @@ const iconMap: Record<string, any> = {
   Zap,
   Cpu,
   ShieldCheck,
-  Smartphone
+  Smartphone,
 };
+
+const fallbackServices: IService[] = [
+  {
+    title: "Full Stack Development",
+    description:
+      "End-to-end web applications built with the MERN stack, ensuring scalability and performance.",
+    icon: "Code2",
+  },
+  {
+    title: "Web Architecture",
+    description:
+      "Designing robust and maintainable system architectures for complex digital products.",
+    icon: "Globe",
+  },
+  {
+    title: "Performance Optimization",
+    description:
+      "Deep dive into application speed, Core Web Vitals, and server-side efficiency.",
+    icon: "Zap",
+  },
+];
 
 const Services = () => {
   const [services, setServices] = useState<IService[]>([]);
@@ -20,49 +41,18 @@ const Services = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const res = await fetch('/api/services');
+        const res = await fetch("/api/services");
         const data = await res.json();
         if (data.success && Array.isArray(data.data) && data.data.length > 0) {
           setServices(data.data);
         } else {
-          setServices([
-            {
-              title: "Full Stack Development",
-              description: "End-to-end web applications built with the MERN stack, ensuring scalability and performance.",
-              icon: "Code2"
-            },
-            {
-              title: "Web Architecture",
-              description: "Designing robust and maintainable system architectures for complex digital products.",
-              icon: "Globe"
-            },
-            {
-              title: "Performance Optimization",
-              description: "Deep dive into application speed, Core Web Vitals, and server-side efficiency.",
-              icon: "Zap"
-            }
-          ]);
+          setServices(fallbackServices);
         }
-      } catch (error) {
-        setServices([
-          {
-            title: "Full Stack Development",
-            description: "End-to-end web applications built with the MERN stack, ensuring scalability and performance.",
-            icon: "Code2"
-          },
-          {
-            title: "Web Architecture",
-            description: "Designing robust and maintainable system architectures for complex digital products.",
-            icon: "Globe"
-          },
-          {
-            title: "Performance Optimization",
-            description: "Deep dive into application speed, Core Web Vitals, and server-side efficiency.",
-            icon: "Zap"
-          }
-        ]);
+      } catch {
+        setServices(fallbackServices);
       }
     };
+
     fetchServices();
   }, []);
 
@@ -81,56 +71,49 @@ const Services = () => {
     visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
   };
 
+  const currentServices = services.length > 0 ? services : fallbackServices;
+
   return (
-    <section className="py-32 px-4 max-w-7xl mx-auto" id="services">
-      <motion.div 
+    <section className="mx-auto max-w-6xl px-4 py-24" id="services">
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="mb-24 text-center"
+        className="mb-16 text-center"
       >
-        <span className="text-blue-500 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">
-          My Services
-        </span>
-        <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-8">
-          <span className="text-white">How I can</span> <span className="accent-gradient">help you</span>
-        </h2>
-        <p className="text-zinc-500 max-w-2xl mx-auto text-lg leading-relaxed">
-          Specialized in modern web technologies to transform your ideas into high-performance digital products.
-        </p>
+        <h2 className="section-title">Services</h2>
+        <div className="section-rule" />
       </motion.div>
 
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        className="grid grid-cols-1 gap-6 md:grid-cols-3"
       >
-        {services.map((service, idx) => (
+        {currentServices.slice(0, 3).map((service) => (
           <motion.article
             key={service.title}
             variants={itemVariants}
-            whileHover={{ 
-              y: -10,
-              backgroundColor: "rgba(255, 255, 255, 0.05)",
-              borderColor: "rgba(59, 130, 246, 0.3)"
-            }}
-            className="glass p-10 group transition-all duration-500 flex flex-col items-center text-center"
+            whileHover={{ y: -6 }}
+            className="panel-card flex min-h-[280px] flex-col items-center justify-start p-10 text-center text-zinc-900"
           >
-            <div className="w-16 h-16 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:border-blue-500/50 transition-all duration-500">
+            <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-full border border-black/10 bg-black/5">
               {(() => {
                 const Icon = iconMap[service.icon];
-                return Icon ? <Icon className="w-8 h-8 text-blue-500" /> : <Globe className="w-8 h-8 text-blue-500" />;
+                return Icon ? (
+                  <Icon className="h-8 w-8 text-zinc-800" />
+                ) : (
+                  <Globe className="h-8 w-8 text-zinc-800" />
+                );
               })()}
             </div>
-            
-            <h3 className="text-xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors">
-              {service.title}
-            </h3>
-            
-            <p className="text-zinc-500 text-sm leading-relaxed">
+
+            <h3 className="font-serif text-3xl font-semibold">{service.title}</h3>
+
+            <p className="mt-4 text-sm leading-7 text-zinc-700">
               {service.description}
             </p>
           </motion.article>

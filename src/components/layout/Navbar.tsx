@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import { Download, Menu, X } from "lucide-react";
+import { Github, Instagram, Linkedin, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useScroll } from "@/hooks/useScroll";
@@ -22,9 +21,10 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
+    { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
-    { name: "Experience", href: "#experience" },
     { name: "Projects", href: "#projects" },
+    { name: "Services", href: "#services" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -33,74 +33,70 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
-      className={`fixed top-0 left-0 right-0 z-50 px-4 md:px-8 transition-all duration-300 ${
-        isScrolled ? "py-4" : "py-6"
+      className={`fixed top-0 left-0 right-0 z-50 px-4 transition-all duration-300 md:px-8 ${
+        isScrolled ? "py-4" : "py-5"
       }`}
       role="navigation"
       aria-label="Main Navigation"
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Logo & Profile */}
-        <Link href="/" className="flex items-center gap-3 group" aria-label="Abhinandan Home">
-          <motion.div 
-            whileHover={{ rotate: 5, scale: 1.1 }}
-            className="w-16 h-16 rounded-xl bg-zinc-900 border border-zinc-800 overflow-hidden relative group-hover:border-blue-500/50 transition-colors"
-          >
-            <Image
-              src="/logo.png"
-              alt="Logo"
-              fill
-              className="object-contain p-1 group-hover:scale-110 transition-all duration-500"
-            />
-          </motion.div>
-          <div className="text-2xl font-bold tracking-tight">
-             <span className="text-blue-500">Abhi</span>
-             <span className="text-zinc-100">nandan</span>
+      <div
+        className={`mx-auto flex max-w-6xl items-center justify-between rounded-full border border-white/10 px-5 py-3 transition-all duration-300 ${
+          isScrolled
+            ? "bg-black/35 shadow-[0_12px_50px_rgba(0,0,0,0.18)] backdrop-blur-xl"
+            : "bg-black/20 backdrop-blur-md"
+        }`}
+      >
+        <Link href="/" className="group" aria-label="Abhinandan Home">
+          <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] uppercase tracking-[0.35em] text-zinc-200 transition-colors group-hover:text-white">
+            abhinandan
           </div>
         </Link>
 
-        {/* Navigation Links - Desktop */}
-        <div className={`hidden md:flex items-center gap-8 px-8 py-3 rounded-2xl transition-all duration-300 ${
-          isScrolled ? "glass shadow-lg shadow-black/20" : "bg-transparent"
-        }`} role="menubar">
+        <div className="hidden items-center gap-8 md:flex" role="menubar">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-zinc-400 hover:text-blue-400 transition-colors relative group/link"
+              className="text-xs tracking-[0.18em] text-zinc-200/85 transition-colors hover:text-white"
               role="menuitem"
             >
               {link.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all duration-300 group-hover/link:w-full" />
             </Link>
           ))}
         </div>
 
-        {/* Lab & CV Button - Desktop */}
-        <div className="hidden md:flex items-center gap-4">
-          <Link 
-            href="/lab" 
-            className="border border-blue-500/30 bg-blue-500/5 px-6 py-2 rounded-xl text-xs font-bold tracking-widest uppercase text-blue-400 hover:bg-blue-500 hover:text-white transition-all shadow-lg shadow-blue-500/5 active:scale-95"
-            aria-label="Visit the experimental lab"
-          >
-            Lab
-          </Link>
-          <a 
-            href={hero?.resumeUrl || "/resume.pdf"} 
+        <div className="hidden items-center gap-4 text-zinc-200/80 md:flex">
+          <a
+            href="https://github.com/abhishekyadav-96"
             target="_blank"
             rel="noopener noreferrer"
-            download="Abhinandan_CV.pdf"
-            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 text-[10px] font-bold tracking-widest uppercase transition-all flex items-center gap-2 rounded-xl shadow-lg shadow-blue-500/20 active:scale-95"
-            aria-label="Download Resume"
+            aria-label="GitHub"
+            className="transition-colors hover:text-white"
           >
-            <Download className="w-3.5 h-3.5" />
-            Resume
+            <Github className="h-4 w-4" />
+          </a>
+          <a
+            href="https://www.instagram.com/abhishekyadav___018/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="transition-colors hover:text-white"
+          >
+            <Instagram className="h-4 w-4" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/abhinandan-yadav-644006378/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="transition-colors hover:text-white"
+          >
+            <Linkedin className="h-4 w-4" />
           </a>
         </div>
 
-        {/* Mobile Menu Button */}
         <button
-          className="md:hidden glass p-3 text-zinc-400 hover:text-white transition-colors"
+          className="rounded-full border border-white/10 bg-white/5 p-3 text-zinc-200 transition-colors hover:text-white md:hidden"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
         >
@@ -108,7 +104,6 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -116,21 +111,21 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 top-0 bg-[#020617] backdrop-blur-xl md:hidden z-40"
+            className="fixed inset-0 top-0 z-40 bg-black/75 backdrop-blur-xl md:hidden"
           >
-            <div className="flex flex-col h-full">
-              <div className="flex items-center justify-between p-8 border-b border-zinc-900">
-                <span className="text-xl font-bold tracking-tighter accent-gradient">
-                  {hero?.name ? hero.name.split(' ').map(n => n[0]).join('') : "AY"}
+            <div className="flex h-full flex-col">
+              <div className="flex items-center justify-between border-b border-white/10 p-8">
+                <span className="text-sm uppercase tracking-[0.35em] text-zinc-100">
+                  {hero?.name || "Abhinandan"}
                 </span>
                 <button
-                  className="glass p-3 text-zinc-400"
+                  className="rounded-full border border-white/10 bg-white/5 p-3 text-zinc-200"
                   onClick={() => setIsOpen(false)}
                 >
                   <X className="w-6 h-6" />
                 </button>
               </div>
-              <div className="flex flex-col p-8 gap-8">
+              <div className="flex flex-col gap-8 p-8">
                 {navLinks.map((link, idx) => (
                   <motion.div
                     key={link.name}
@@ -140,7 +135,7 @@ const Navbar = () => {
                   >
                     <Link
                       href={link.href}
-                      className="text-4xl font-bold text-zinc-100 hover:text-blue-400 transition-colors"
+                      className="font-serif text-4xl text-zinc-100 transition-colors hover:text-white"
                       onClick={() => setIsOpen(false)}
                     >
                       {link.name}
@@ -148,24 +143,8 @@ const Navbar = () => {
                   </motion.div>
                 ))}
               </div>
-              <div className="mt-auto p-8 border-t border-zinc-900 flex flex-col gap-4">
-                <Link 
-                  href="/lab" 
-                  className="w-full text-center border border-blue-500/30 bg-blue-500/5 py-4 rounded-2xl text-sm font-bold tracking-widest uppercase text-blue-400"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Explore Lab
-                </Link>
-                <a 
-                  href={hero?.resumeUrl || "/resume.pdf"} 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download="Abhinandan_CV.pdf"
-                  className="w-full text-center bg-blue-600 py-4 rounded-2xl text-sm font-bold tracking-widest uppercase text-white flex items-center justify-center gap-2"
-                >
-                  <Download className="w-5 h-5" />
-                  Download Resume
-                </a>
+              <div className="mt-auto border-t border-white/10 p-8 text-sm text-zinc-300">
+                Available for freelance and full-time work.
               </div>
             </div>
           </motion.div>
