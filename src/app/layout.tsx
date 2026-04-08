@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
-import CustomCursor from "@/components/layout/CustomCursor";
 import Background from "@/components/layout/Background";
 import ScrollProgress from "@/components/layout/ScrollProgress";
 import BackToTop from "@/components/layout/BackToTop";
@@ -106,7 +105,7 @@ export default function RootLayout({
               description:
                 "Senior MERN Stack Developer specializing in building high-performance, scalable full-stack applications.",
               sameAs: [
-                "https://github.com/your-username",
+                "https://github.com/AbhinandanYadav01",
                 "https://linkedin.com/in/your-username",
               ],
             }),
@@ -116,7 +115,6 @@ export default function RootLayout({
       <body
         className={`${bodyFont.variable} ${displayFont.variable} font-sans antialiased bg-[#111111] text-white selection:bg-white/20 selection:text-white`}
       >
-        <CustomCursor />
         <Background />
         <ScrollProgress />
         <BackToTop />

@@ -76,51 +76,65 @@ const TechStack = () => {
   };
 
   return (
-    <section className="mx-auto max-w-5xl px-4 py-10" id="tech">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="mb-10"
-      >
-        <p className="text-center text-xs uppercase tracking-[0.35em] text-zinc-800">
-          Core Stack
-        </p>
-      </motion.div>
+    <section className="mx-auto max-w-6xl px-4 py-16" id="tech">
+      <div className="overflow-hidden rounded-[2.5rem] border border-[#2d221b]/20 bg-[#211915] px-6 py-10 text-[#fff8f1] shadow-[0_40px_120px_rgba(20,12,8,0.22)] md:px-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-10 flex flex-col gap-4 text-center md:flex-row md:items-end md:justify-between md:text-left"
+        >
+          <div>
+            <p className="section-kicker text-[#c99361]">Core Stack</p>
+            <h2 className="mt-3 font-serif text-4xl font-semibold tracking-tight text-[#fff5eb] md:text-5xl">
+              Technologies I build with every day
+            </h2>
+          </div>
+          <p className="max-w-xl text-sm leading-7 text-[#d7c7b9]">
+            A compact view of the systems, tools, and platforms I rely on to ship
+            polished full-stack products.
+          </p>
+        </motion.div>
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="grid grid-cols-2 gap-4 sm:grid-cols-4"
-      >
-        {(categories.length > 0 ? categories : fallbackCategories).slice(0, 4).map((cat) => (
-          <motion.div
-            key={cat.title}
-            variants={itemVariants}
-            whileHover={{ y: -4 }}
-            className="panel-card flex min-h-[170px] flex-col items-center justify-center p-6 text-center text-zinc-900"
-          >
-            <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-black/10 bg-black/5">
-              {(() => {
-                const Icon = iconMap[cat.icon];
-                return Icon ? (
-                  <Icon className="h-6 w-6 text-zinc-800" />
-                ) : (
-                  <Layout className="h-6 w-6 text-zinc-800" />
-                );
-              })()}
-            </div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
+        >
+          {(categories.length > 0 ? categories : fallbackCategories).slice(0, 4).map((cat) => (
+            <motion.div
+              key={cat.title}
+              variants={itemVariants}
+              whileHover={{ y: -4 }}
+              className="rounded-[1.8rem] border border-white/10 bg-white/6 p-6 text-left backdrop-blur-md"
+            >
+              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-[#c28958]/12">
+                {(() => {
+                  const Icon = iconMap[cat.icon];
+                  return Icon ? (
+                    <Icon className="h-6 w-6 text-[#d59d6a]" />
+                  ) : (
+                    <Layout className="h-6 w-6 text-[#d59d6a]" />
+                  );
+                })()}
+              </div>
 
-            <h3 className="font-serif text-3xl font-semibold">{cat.title}</h3>
-            <p className="mt-2 text-xs uppercase tracking-[0.22em] text-zinc-700">
-              {cat.skills.slice(0, 2).join(" · ")}
-            </p>
-          </motion.div>
-        ))}
-      </motion.div>
+              <h3 className="font-serif text-3xl font-semibold text-[#fff7ef]">
+                {cat.title}
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-[#d1c0b2]">
+                {cat.description}
+              </p>
+              <p className="mt-4 text-[11px] uppercase tracking-[0.22em] text-[#c99361]">
+                {cat.skills.slice(0, 3).join(" / ")}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </section>
   );
 };

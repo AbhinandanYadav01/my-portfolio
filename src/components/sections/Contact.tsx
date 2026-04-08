@@ -17,7 +17,7 @@ function SubmitButton() {
     <button
       type="submit"
       aria-disabled={pending}
-      className="w-full rounded-md border border-black/20 bg-white/35 px-4 py-3 text-sm uppercase tracking-[0.25em] text-zinc-900 transition-colors hover:bg-white/55 disabled:opacity-50 disabled:cursor-not-allowed"
+      className="w-full rounded-xl border border-[#7b5e49]/18 bg-[#241a15] px-4 py-3 text-sm uppercase tracking-[0.25em] text-[#fff6ee] transition-colors hover:bg-[#17100d] disabled:cursor-not-allowed disabled:opacity-50"
     >
       {pending ? "Sending..." : "Send Message"}
     </button>
@@ -43,30 +43,33 @@ const Contact = () => {
       </div>
       <div className="rounded-[2.5rem] bg-transparent">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
-          <div>
-            <h3 className="font-serif text-4xl font-semibold text-zinc-900">
+          <div className="rounded-[2rem] border border-white/20 bg-[rgba(255,247,239,0.2)] p-6 backdrop-blur-sm md:p-8">
+            <h3 className="font-serif text-4xl font-semibold text-[#1d1612]">
               Get In Touch
             </h3>
-            <p className="mt-4 max-w-md text-sm leading-7 text-zinc-800">
+            <p className="mt-4 max-w-md text-base leading-8 text-[#3d3028]">
               If you want to work together, need a portfolio site, or have a product
               idea to shape, send a message and I&apos;ll get back to you.
             </p>
-            <div className="mt-10 space-y-5 text-zinc-900">
-              <a href={`mailto:${email}`} className="flex items-center gap-4 text-sm">
-                <Mail className="h-4 w-4" />
+            <div className="mt-10 space-y-5 text-[#1f1814]">
+              <a
+                href={`mailto:${email}`}
+                className="flex items-center gap-4 text-base transition-colors hover:text-[#8d603f]"
+              >
+                <Mail className="h-5 w-5 text-[#a66a3f]" />
                 {email}
               </a>
-              <p className="flex items-center gap-4 text-sm">
-                <Phone className="h-4 w-4" />
-                +91 XX XX XX XX
+              <p className="flex items-center gap-4 text-base">
+                <Phone className="h-5 w-5 text-[#a66a3f]" />
+                +977 9762451762
               </p>
-              <p className="flex items-center gap-4 text-sm">
-                <MapPin className="h-4 w-4" />
-                Alot, India
+              <p className="flex items-center gap-4 text-base">
+                <MapPin className="h-5 w-5 text-[#a66a3f]" />
+                Nepal, Kathmandu
               </p>
               <button
                 onClick={copyToClipboard}
-                className="flex items-center gap-2 text-sm text-zinc-700 transition-colors hover:text-black"
+                className="flex items-center gap-2 text-sm text-[#5e4b3e] transition-colors hover:text-[#1f1814]"
                 aria-label="Copy email to clipboard"
               >
                 {copied ? (
@@ -84,7 +87,7 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="panel-card p-6 md:p-8">
+          <div className="panel-card border-white/35 bg-[rgba(255,247,239,0.72)] p-6 md:p-8">
             <form action={formAction} className="space-y-4">
               <div>
                 <input
@@ -92,7 +95,7 @@ const Contact = () => {
                   id="name"
                   name="name"
                   placeholder="Your Name"
-                  className="w-full rounded-md border border-black/20 bg-black/80 px-4 py-3 text-sm text-white placeholder:text-zinc-400 focus:outline-none"
+                  className="w-full rounded-xl border border-[#3b2c22]/18 bg-[#2c2622] px-4 py-3 text-sm text-[#fff8f2] placeholder:text-[#b7ada4] focus:outline-none"
                   required
                 />
                 {state.errors?.name && (
@@ -105,7 +108,7 @@ const Contact = () => {
                   id="email"
                   name="email"
                   placeholder="Your Email"
-                  className="w-full rounded-md border border-black/20 bg-black/80 px-4 py-3 text-sm text-white placeholder:text-zinc-400 focus:outline-none"
+                  className="w-full rounded-xl border border-[#3b2c22]/18 bg-[#2c2622] px-4 py-3 text-sm text-[#fff8f2] placeholder:text-[#b7ada4] focus:outline-none"
                   required
                 />
                 {state.errors?.email && (
@@ -118,7 +121,7 @@ const Contact = () => {
                   name="message"
                   rows={6}
                   placeholder="Your Message"
-                  className="w-full rounded-md border border-black/20 bg-black/80 px-4 py-3 text-sm text-white placeholder:text-zinc-400 focus:outline-none"
+                  className="w-full rounded-xl border border-[#3b2c22]/18 bg-[#2c2622] px-4 py-3 text-sm text-[#fff8f2] placeholder:text-[#b7ada4] focus:outline-none"
                   required
                 ></textarea>
                 {state.errors?.message && (

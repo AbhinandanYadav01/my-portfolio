@@ -21,18 +21,18 @@ const Background = () => {
       <div
         className="absolute inset-0 z-0 transition-opacity duration-1000"
         style={{
-          background: `radial-gradient(520px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 255, 255, 0.1), transparent 78%)`,
+          background: `radial-gradient(480px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 244, 228, 0.34), transparent 76%)`,
         }}
       />
       <div
-        className="absolute inset-0 z-0 opacity-[0.06]"
+        className="absolute inset-0 z-0 opacity-[0.05]"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.35) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
+            "linear-gradient(rgba(103,76,51,0.18) 1px, transparent 1px), linear-gradient(90deg, rgba(103,76,51,0.18) 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
         }}
       />
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_24%),radial-gradient(circle_at_bottom,rgba(0,0,0,0.66),transparent_30%)]" />
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top,rgba(255,246,233,0.7),transparent_24%),radial-gradient(circle_at_15%_20%,rgba(178,123,75,0.2),transparent_20%),radial-gradient(circle_at_bottom,rgba(34,24,18,0.74),transparent_32%)]" />
       <div
         className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none contrast-150 brightness-100"
         style={{
